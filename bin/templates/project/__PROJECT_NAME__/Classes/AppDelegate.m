@@ -26,7 +26,6 @@
 //
 
 #import "AppDelegate.h"
-#import "PushNotificationsEnabled.h"
 #import "MainViewController.h"
 
 #import <Cordova/CDVPlugin.h>
@@ -118,9 +117,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:CDVLocalNotification object:notification];
 }
 
-#if PUSH_NOTIFICATIONS_ENABLED
-- (void)                                 application:(UIApplication*)application
-    didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+- (void)                                application:(UIApplication *)application
+   didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     // re-post ( broadcast )
     NSString* token = [[[[deviceToken description]
@@ -137,8 +135,6 @@
     // re-post ( broadcast )
     [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotificationError object:error];
 }
-
-#endif
 
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {
