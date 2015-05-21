@@ -26,7 +26,6 @@
 //
 
 #import "AppDelegate.h"
-#import "PushNotificationsEnabled.h"
 #import "MainViewController.h"
 
 #import <Cordova/CDVPlugin.h>
@@ -114,7 +113,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:CDVLocalNotification object:notification];
 }
 
-#if PUSH_NOTIFICATIONS_ENABLED
+#ifndef DISABLE_PUSH_NOTIFICATIONS
+
     - (void)                                 application:(UIApplication*)application
         didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
     {
