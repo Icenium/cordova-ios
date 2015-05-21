@@ -117,6 +117,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:CDVLocalNotification object:notification];
 }
 
+#ifndef DISABLE_PUSH_NOTIFICATIONS
+
 - (void)                                application:(UIApplication *)application
    didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
@@ -135,6 +137,8 @@
     // re-post ( broadcast )
     [[NSNotificationCenter defaultCenter] postNotificationName:CDVRemoteNotificationError object:error];
 }
+
+#endif
 
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {
