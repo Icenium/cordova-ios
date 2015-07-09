@@ -502,7 +502,9 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "__TESTING__";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				CODE_SIGN_ENTITLEMENTS = "${ENTITLEMENTS_}";
+				PROVISIONING_PROFILE = "${PROVISION_}";
+ 				TARGETED_DEVICE_FAMILY = "${CUSTOM_DEVICE_FAMILY}";
 			};
 			name = Debug;
 		};
@@ -533,7 +535,9 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "__TESTING__";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				CODE_SIGN_ENTITLEMENTS = "${ENTITLEMENTS_}";
+				PROVISIONING_PROFILE = "${PROVISION_}";
+ 				TARGETED_DEVICE_FAMILY = "${CUSTOM_DEVICE_FAMILY}";
 			};
 			name = Release;
 		};
