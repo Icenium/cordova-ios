@@ -99,6 +99,19 @@ function purgeProjectFileCache(project_dir) {
 
 module.exports = {
     parse: parseProjectFile,
+    parseProjectFile: function(project_dir) {
+        if (!project_dir || !fs.existsSync(project_dir)) {
+            throw new Error(`"${project_dir}" is not a valid project directory.`);
+        }
+
+        var xcodeProjPath = fs.readdirSync(project_dir).filter(function (file) { return ~file.indexOf('.xcodeproj') && fs.statSync(path.join(project_dir, file)).isDirectory(); })[0];
+        if (!xcodeProjPath) {
+            throw new Error(`Path "${project_dir}" doesn't contain an Xcode project.`);
+        }
+
+        var pbxPath = path.join(xcodeProjPath, "project.pbxproject");
+        return parseProjectFile({ root: project_dir, pbxproj: pbxPath });
+    },
     purgeProjectFileCache: purgeProjectFileCache
 };
 
