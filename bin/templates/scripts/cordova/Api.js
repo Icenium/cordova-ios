@@ -74,6 +74,8 @@ function Api(platform, platformRootDir, events) {
         cordovaJs: 'bin/CordovaLib/cordova.js',
         cordovaJsSrc: 'bin/cordova-js-src'
     };
+
+    this._handler = require('./lib/projectFile');
 }
 
 /**
