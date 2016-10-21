@@ -109,7 +109,7 @@ module.exports = {
             throw new Error(`Path "${project_dir}" doesn't contain an Xcode project.`);
         }
 
-        var pbxPath = path.join(xcodeProjPath, "project.pbxproject");
+        var pbxPath = path.join(xcodeProjPath, "project.pbxproj");
         return parseProjectFile({ root: project_dir, pbxproj: pbxPath });
     },
     purgeProjectFileCache: purgeProjectFileCache
