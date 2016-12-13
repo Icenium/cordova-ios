@@ -53,7 +53,8 @@ var handlers = {
             if (!fs.existsSync(srcFile)) throw new CordovaError('Cannot find resource file "' + srcFile + '" for plugin ' + plugin.id + ' in iOS platform');
             if (fs.existsSync(destFile)) throw new CordovaError('File already exists at detination "' + destFile + '" for resource file specified by plugin ' + plugin.id + ' in iOS platform');
             project.xcode.addResourceFile(path.join('Resources', path.basename(src)));
-            var link = !!(options && options.link);
+            // Do not link resources because they end up as invalid symbolic links inside the .ipa
+            var link = false;
             copyFile(plugin.dir, src, project.projectDir, destFile, link);
         },
         uninstall:function(obj, plugin, project, options) {
@@ -334,6 +335,7 @@ function symlinkFileOrDirTree(src, dest) {
         });
     }
     else {
+        // Hardlinks cannot be used because project and plugin may be on different disks/partitions
         fs.symlinkSync(path.relative(fs.realpathSync(path.dirname(dest)), src), dest);
     }
 }
